@@ -20,6 +20,8 @@ class GridWorld:
             3: (0, 1),  # right
         }
 
+        self.walls = {(1, 1), (1, 3), (2, 1), (3, 2)}
+
     def reset(self):
         self.agent_pos = self.start
         return self.agent_pos
@@ -36,14 +38,20 @@ class GridWorld:
         reward = -1
         done = False
 
-        if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
-            self.agent_pos = (new_row, new_col)
-        else:
-            reward = -5  # punish if moves out of the gridworld
+        # check bounds
+        if not (0 <= new_row < self.rows and 0 <= new_col < self.cols):
+            return self.agent_pos, -5, False
 
+        # check walls
+        if (new_row, new_col) in self.walls:
+            return self.agent_pos, -10, False
+
+        # move agent
+        self.agent_pos = (new_row, new_col)
+
+        # goal
         if self.agent_pos == self.goal:
-            reward = 100
-            done = True
+            return self.agent_pos, 100, True
 
         return self.agent_pos, reward, done
 
@@ -59,6 +67,9 @@ class GridWorld:
 
                 elif (r, c) == self.goal:
                     print("G", end=" ")
+
+                elif (r, c) in self.walls:
+                    print("X", end=" ")
 
                 else:
                     print(".", end=" ")
@@ -110,6 +121,8 @@ agent = QLearningAgent(env)
 
 episodes = 500
 episode_steps = []
+
+env.print_grid()
 
 for episode in range(episodes):
 
