@@ -116,6 +116,35 @@ class QLearningAgent:
         self.q_table[row, col, action] = current_q + self.alpha * (target - current_q)
 
 
+def print_policy(env, agent):
+    ARROWS = {0: "↑", 1: "↓", 2: "←", 3: "→"}
+
+    for r in range(env.rows):
+        for c in range(env.cols):
+
+            pos = (r, c)
+
+            # wall
+            if pos in env.walls:
+                print("X", end=" ")
+
+            # goal
+            elif pos == env.goal:
+                print("G", end=" ")
+
+            # start (optional highlight)
+            elif pos == env.start:
+                print("S", end=" ")
+
+            else:
+                best_action = np.argmax(agent.q_table[r, c])
+                print(ARROWS[best_action], end=" ")
+
+        print()
+
+    print()
+
+
 env = GridWorld()
 agent = QLearningAgent(env)
 
@@ -145,6 +174,8 @@ for episode in range(episodes):
     episode_steps.append(steps)
     if episode % 50 == 0:
         print(f"Episode {episode}, steps = {steps}")
+
+print_policy(env, agent)
 
 plt.plot(episode_steps)
 plt.title("GridWorld Q-Learning Progress")
