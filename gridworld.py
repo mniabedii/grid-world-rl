@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 
 class GridWorld:
@@ -21,6 +22,7 @@ class GridWorld:
 
     def reset(self):
         self.agent_pos = self.start
+        return self.agent_pos
 
     def step(self, action):
 
@@ -104,15 +106,35 @@ class QLearningAgent:
 
 
 env = GridWorld()
+agent = QLearningAgent(env)
 
-env.print_grid()
+episodes = 500
+episode_steps = []
 
-env.step(3)  # right
-env.print_grid()
+for episode in range(episodes):
 
-env.step(1)  # down
-env.print_grid()
+    state = env.reset()
+    done = False
 
-agent = QLearningAgent(env=env)
-for _ in range(20):
-    print(agent.choose_action((0, 0)))
+    steps = 0
+    while not done:
+
+        action = agent.choose_action(state)
+
+        next_state, reward, done = env.step(action)
+
+        agent.learn(state, action, reward, next_state, done)
+
+        state = next_state
+
+        steps += 1
+
+    episode_steps.append(steps)
+    if episode % 50 == 0:
+        print(f"Episode {episode}, steps = {steps}")
+
+plt.plot(episode_steps)
+plt.title("GridWorld Q-Learning Progress")
+plt.xlabel("Episode")
+plt.ylabel("Steps")
+plt.show()
