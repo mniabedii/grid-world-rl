@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class GridWorld:
     def __init__(self):
         self.rows = 5
@@ -60,6 +63,21 @@ class GridWorld:
             print()
 
         print()
+
+
+class QLearningAgent:
+    def __init__(self, env):
+
+        self.alpha = 0.1
+        self.gamma = 0.99
+
+        self.q_table = np.zeros((env.rows, env.cols, 4))
+
+    def best_action(self, state):
+
+        row, col = state
+
+        return np.argmax(self.q_table[row, col])
 
 
 env = GridWorld()
