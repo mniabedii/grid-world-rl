@@ -27,9 +27,19 @@ class GridWorld:
         new_row = row + dr
         new_col = col + dc
 
-        # keeping the agent in the gridworld
+        reward = -1
+        done = False
+
         if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
             self.agent_pos = (new_row, new_col)
+        else:
+            reward = -5  # punish if moves out of the gridworld
+
+        if self.agent_pos == self.goal:
+            reward = 100
+            done = True
+
+        return self.agent_pos, reward, done
 
     def print_grid(self):
         for r in range(self.rows):
@@ -53,4 +63,11 @@ class GridWorld:
 
 
 env = GridWorld()
+
+env.print_grid()
+
+env.step(3)  # right
+env.print_grid()
+
+env.step(1)  # down
 env.print_grid()
