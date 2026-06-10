@@ -77,6 +77,12 @@ class QLearningAgent:
 
     def best_action(self, state):
 
+        row, col = state
+
+        return np.argmax(self.q_table[row, col])
+
+    def choose_action(self, state):
+
         if random.random() < self.epsilon:
             return random.randint(0, 3)
 
@@ -92,3 +98,7 @@ env.print_grid()
 
 env.step(1)  # down
 env.print_grid()
+
+agent = QLearningAgent(env=env)
+for _ in range(20):
+    print(agent.choose_action((0, 0)))
