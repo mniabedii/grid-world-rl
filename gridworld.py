@@ -8,8 +8,28 @@ class GridWorld:
 
         self.agent_pos = self.start
 
+        self.actions = {
+            0: (-1, 0),  # up
+            1: (1, 0),  # down
+            2: (0, -1),  # left
+            3: (0, 1),  # right
+        }
+
     def reset(self):
         self.agent_pos = self.start
+
+    def step(self, action):
+
+        dr, dc = self.actions[action]
+
+        row, col = self.agent_pos
+
+        new_row = row + dr
+        new_col = col + dc
+
+        # keeping the agent in the gridworld
+        if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
+            self.agent_pos = (new_row, new_col)
 
     def print_grid(self):
         for r in range(self.rows):
