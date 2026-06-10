@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 
 class GridWorld:
@@ -70,14 +71,16 @@ class QLearningAgent:
 
         self.alpha = 0.1
         self.gamma = 0.99
+        self.epsilon = 0.1
 
         self.q_table = np.zeros((env.rows, env.cols, 4))
 
     def best_action(self, state):
 
-        row, col = state
+        if random.random() < self.epsilon:
+            return random.randint(0, 3)
 
-        return np.argmax(self.q_table[row, col])
+        return self.best_action(state)
 
 
 env = GridWorld()
