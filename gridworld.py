@@ -88,6 +88,20 @@ class QLearningAgent:
 
         return self.best_action(state)
 
+    def learn(self, state, action, reward, next_state, done):
+
+        row, col = state
+        n_row, n_col = next_state
+
+        current_q = self.q_table[row, col, action]
+
+        if done:
+            target = reward
+        else:
+            target = reward + self.gamma * np.max(self.q_table[n_row, n_col])
+
+        self.q_table[row, col, action] = current_q + self.alpha * (target - current_q)
+
 
 env = GridWorld()
 
