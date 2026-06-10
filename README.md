@@ -34,19 +34,19 @@ Where:
 
 ## How to Run
 
-### 1. Clone the repository
+#### 1. Clone the repository
 
 ```
 git clone https://github.com/your-username/qlearning-agent-simple-grid-world.git
 cd qlearning-agent-simple-grid-world
 ```
 
-### 2. Install dependencies
+#### 2. Install dependencies
 ```
 pip install numpy matplotlib
 ```
 
-### 3. Run
+#### 3. Run
 ```
 python gridworld.py
 ```
