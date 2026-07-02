@@ -1,5 +1,5 @@
-from network import DQN
-from replay_buffer import ReplayBuffer
+from .network import DQN
+from .replay_buffer import ReplayBuffer
 
 import torch
 import torch.nn as nn

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from qlearning_agent import QLearningAgent
+from .qlearning_agent import QLearningAgent
 from src.gridworld import GridWorld
 from src.util import print_policy, visualize
 

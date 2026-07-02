@@ -1,4 +1,4 @@
-from dqn_agent import DQNAgent
+from .dqn_agent import DQNAgent
 
 import matplotlib.pyplot as plt
 from src.gridworld import GridWorld
