@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 from gridworld import GridWorld
 from qlearning_agent import QLearningAgent
