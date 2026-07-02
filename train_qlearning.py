@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 from gridworld import GridWorld
 from qlearning_agent import QLearningAgent
-from util import print_policy
+from util import print_policy, visualize
 
 env = GridWorld()
 agent = QLearningAgent(env)

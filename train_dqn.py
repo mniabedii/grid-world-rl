@@ -2,7 +2,7 @@ from gridworld import GridWorld
 from dqn_agent import DQNAgent
 
 import matplotlib.pyplot as plt
-from util import print_policy
+from util import print_policy, visualize
 
 env = GridWorld()
 agent = DQNAgent(gamma=0.99, epsilon=0.1, buffer_capacity=10_000)
@@ -46,9 +46,4 @@ for episode in range(episodes):
 print(f"Episode {episode}, Steps: {steps}")
 
 print_policy(env, agent)
-
-plt.plot(episode_steps)
-plt.xlabel("Episode")
-plt.ylabel("Steps")
-plt.title("DQN Training")
-plt.show()
+visualize(episode_steps)

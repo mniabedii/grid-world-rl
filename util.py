@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import matplotlib.pyplot as plt
 
 
 def print_policy(env, agent):
@@ -37,3 +38,12 @@ def print_policy(env, agent):
         print()
 
     print()
+
+
+def visualize(episode_steps):
+    plt.plot(episode_steps)
+    plt.title("Steps per episode plot")
+    plt.xlabel("Episode")
+    plt.ylabel("Steps")
+    plt.title("DQN Training")
+    plt.show()
