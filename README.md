@@ -1,4 +1,5 @@
 # GridWorld Reinforcement Learning
+**[Read the full experiment log and analysis notebook here](report/analysis.ipynb)**
 
 This project implements and compares **Tabular Q-Learning** & **Deep Q-Networks (DQN)** reinforcement learning algorithms on a custom GridWorld environment.
 
@@ -51,11 +52,13 @@ The Q-values are updated using the Bellman equation:
 
 <p align="center">
 
-$Q(s,a)\leftarrow Q(s,a)+\alpha\left[r+\gamma\max_{a'}Q(s',a')-Q(s,a)\right]$
+$$Q(s,a)\leftarrow Q(s,a)+\alpha\left[r+\gamma\max_{a'}Q(s',a')-Q(s,a)\right]$$
 
 </p>
 
 The agent consistently learns the optimal shortest-path policy, requiring fewer steps as training progresses.
+
+![Q-Learning Performance](outputs/qlearning_steps_per_episode.png)
 
 ---
 
@@ -75,11 +78,13 @@ Target value:
 
 <p align="center">
 
-$y=r+\gamma\max_{a'}Q_{\text{target}}(s',a')$
+$$y=r+\gamma\max_{a'}Q_{\text{target}}(s',a')$$
 
 </p>
 
 The current focus of this project is understanding why the DQN agent struggles despite the simplicity of the environment.
+
+![DQN Performance](outputs/experiment0:dqn_steps_per_episode.png)
 
 ---
 
@@ -87,7 +92,7 @@ The current focus of this project is understanding why the DQN agent struggles d
 
 After successfully implementing the Tabular Q-Learning agent, the project focused on developing and improving the Deep Q-Network (DQN) agent. As training challenges emerged, multiple experiments and iterative modifications were carried out to investigate the causes of the observed behavior and improve performance.
 
-A complete record of these experiments—including the motivation behind each change, implementation details, results, and analysis—is documented in **`report/analysis.ipynb`**.
+A complete record of these experiments—including the motivation behind each change, implementation details, results, and analysis—is documented in [**`report/analysis.ipynb`**](report/analysis.ipynb).
 
 The notebook serves as the primary documentation for the project and includes:
 
