@@ -1,8 +1,8 @@
-from gridworld import GridWorld
 from dqn_agent import DQNAgent
 
 import matplotlib.pyplot as plt
-from util import print_policy, visualize
+from src.gridworld import GridWorld
+from src.util import print_policy, visualize
 
 env = GridWorld()
 agent = DQNAgent(gamma=0.99, epsilon=0.1, buffer_capacity=10_000)

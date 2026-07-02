@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
-from gridworld import GridWorld
 from qlearning_agent import QLearningAgent
-from util import print_policy, visualize
+from src.gridworld import GridWorld
+from src.util import print_policy, visualize
 
 env = GridWorld()
 agent = QLearningAgent(env)
@@ -35,9 +35,4 @@ for episode in range(episodes):
         print(f"Episode {episode}, steps = {steps}")
 
 print_policy(env, agent)
-
-plt.plot(episode_steps)
-plt.title("GridWorld Q-Learning Progress")
-plt.xlabel("Episode")
-plt.ylabel("Steps")
-plt.show()
+visualize(episode_steps)
