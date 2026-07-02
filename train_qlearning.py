@@ -2,36 +2,7 @@ import matplotlib as plt
 import numpy as np
 from gridworld import GridWorld
 from qlearning_agent import QLearningAgent
-
-
-def print_policy(env, agent):
-    ARROWS = {0: "↑", 1: "↓", 2: "←", 3: "→"}
-
-    for r in range(env.rows):
-        for c in range(env.cols):
-
-            pos = (r, c)
-
-            # wall
-            if pos in env.walls:
-                print("X", end=" ")
-
-            # goal
-            elif pos == env.goal:
-                print("G", end=" ")
-
-            # start (optional highlight)
-            elif pos == env.start:
-                print("S", end=" ")
-
-            else:
-                best_action = np.argmax(agent.q_table[r, c])
-                print(ARROWS[best_action], end=" ")
-
-        print()
-
-    print()
-
+from util import print_policy
 
 env = GridWorld()
 agent = QLearningAgent(env)

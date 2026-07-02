@@ -2,6 +2,7 @@ from gridworld import GridWorld
 from dqn_agent import DQNAgent
 
 import matplotlib.pyplot as plt
+from util import print_policy
 
 env = GridWorld()
 agent = DQNAgent(gamma=0.99, epsilon=0.1, buffer_capacity=10_000)
@@ -43,6 +44,8 @@ for episode in range(episodes):
         agent.update_target_network()
 
 print(f"Episode {episode}, Steps: {steps}")
+
+print_policy(env, agent)
 
 plt.plot(episode_steps)
 plt.xlabel("Episode")
