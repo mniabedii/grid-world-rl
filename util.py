@@ -1,4 +1,9 @@
+import numpy as np
+import torch
+
+
 def print_policy(env, agent):
+
     ARROWS = {0: "↑", 1: "↓", 2: "←", 3: "→"}
 
     for r in range(env.rows):
@@ -6,20 +11,27 @@ def print_policy(env, agent):
 
             pos = (r, c)
 
-            # wall
             if pos in env.walls:
                 print("X", end=" ")
 
-            # goal
             elif pos == env.goal:
                 print("G", end=" ")
 
-            # start (optional highlight)
             elif pos == env.start:
                 print("S", end=" ")
 
             else:
-                best_action = np.argmax(agent.q_table[r, c])
+                if hasattr(agent, "q_table"):
+                    best_action = np.argmax(agent.q_table[r, c])
+
+                else:
+                    state = torch.FloatTensor([r, c])
+
+                    with torch.no_grad():
+                        q_values = agent.online_network(state)
+
+                    best_action = torch.argmax(q_values).item()
+
                 print(ARROWS[best_action], end=" ")
 
         print()

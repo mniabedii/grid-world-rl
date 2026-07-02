@@ -1,5 +1,5 @@
 import matplotlib as plt
-import numpy as np
+
 from gridworld import GridWorld
 from qlearning_agent import QLearningAgent
 from util import print_policy
