@@ -45,5 +45,4 @@ def visualize(episode_steps):
     plt.title("Steps per episode plot")
     plt.xlabel("Episode")
     plt.ylabel("Steps")
-    plt.title("DQN Training")
     plt.show()
