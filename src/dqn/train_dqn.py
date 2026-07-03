@@ -36,7 +36,7 @@ for episode in range(episodes):
         steps += 1
 
     episode_steps.append(steps)
-    if episode % 50 == 0:
+    if episode % 10 == 0:
         print(f"Episode {episode}, Steps: {steps}")
 
     # update the target network every 20 episodes

@@ -67,6 +67,7 @@ class DQNAgent:
         # bellman equation
         target_q = rewards + self.gamma * next_q * (1 - dones)
 
+        current_q = current_q.squeeze(-1)
         loss = self.loss_function(current_q, target_q)
 
         self.optimizer.zero_grad()
