@@ -1,7 +1,24 @@
 # GridWorld Reinforcement Learning
-**[Read the full experiment log and analysis notebook here](report/analysis.ipynb)**
 
-This project implements and compares **Tabular Q-Learning** & **Deep Q-Networks (DQN)** reinforcement learning algorithms on a custom GridWorld environment.
+The repository contains the complete implementation of both **Tabular Q-Learning** and **Deep Q-Network (DQN)** on a simple GridWorld environment.
+
+ While developing the DQN agent, several training instabilities emerged, leading to a series of experiments to identify and resolve the underlying issues.
+
+Once the DQN agent reached stable performance, additional experiments were conducted to study its learning behavior across multiple independent training runs. Some of the results were expected, while others revealed interesting characteristics of deep reinforcement learning.
+
+While a 5×5 GridWorld is a relatively simple environment, repeated experiments reveal surprisingly rich learning dynamics. For anyone new to reinforcement learning, it offers an accessible way to observe how exploration, convergence, and training variability influence an agent's behavior.
+
+**[Explore the complete experiment notebook](report/analysis.ipynb)**
+
+The notebook is the core of this project. it documents:
+
+- the implementation process,
+- debugging and iterative improvements,
+- experimental results,
+- performance analysis,
+- and observations from repeated training runs.
+
+**If you're interested in how a DQN behaves beyond a single successful training run, the notebook is the best place to start.** 
 
 ## The Environment
 
@@ -82,24 +99,19 @@ $$y=r+\gamma\max_{a'}Q_{\text{target}}(s',a')$$
 
 </p>
 
-The current focus of this project is understanding why the DQN agent struggles despite the simplicity of the environment.
-
-![DQN Performance](outputs/experiment0:dqn_steps_per_episode.png)
-
 ---
 
-## Experiments & Project Report
+## Experiments
 
-After successfully implementing the Tabular Q-Learning agent, the project focused on developing and improving the Deep Q-Network (DQN) agent. As training challenges emerged, multiple experiments and iterative modifications were carried out to investigate the causes of the observed behavior and improve performance.
+The project focused on developing and improving the Deep Q-Network (DQN) agent. Once the DQN agent was successfully implemented, we ran it repeatedly under the same environment and analyzed its behavior across multiple independent training runs. The notebook discusses the architectural decisions, training procedure, and experiments that led to this final implementation.
 
-A complete record of these experiments—including the motivation behind each change, implementation details, results, and analysis—is documented in [**`report/analysis.ipynb`**](report/analysis.ipynb).
+![Run1](outputs/optimized_dqn_runs/optimized_dqn_run1.png)
 
-The notebook serves as the primary documentation for the project and includes:
+![Run2](outputs/optimized_dqn_runs/optimized_dqn_run2.png)
 
-- Performance plots and learning curves
-- Analysis of the learned policies
-- Discussion of the DQN convergence issues
-- Experiments, observations, and proposed improvements
+![Run3](outputs/optimized_dqn_runs/optimized_dqn_run3.png)
+
+> Feel free to try your own experiments
 
 ---
 
@@ -134,21 +146,13 @@ python3 -m src.dqn.train_dqn
 ├── README.md
 ├── requirements.txt
 ├── outputs/
-│   ├── dqn_steps_per_episode.png
-│   └── qlearning_steps_per_episode.png
 ├── report/
-│   └── analysis.ipynb
+│   └── analysis.ipynb 
 └── src/
     ├── gridworld.py
     ├── util.py
     ├── qlearning/
-    │   ├── qlearning_agent.py
-    │   └── train_qlearning.py
     └── dqn/
-        ├── dqn_agent.py
-        ├── network.py
-        ├── replay_buffer.py
-        └── train_dqn.py
 ```
 
 ## Technologies Used
